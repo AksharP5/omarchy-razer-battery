@@ -1,6 +1,6 @@
 # Razer Battery for Omarchy
 
-Razer mouse battery percentage in the Omarchy bar. Shows charging status, highlights battery levels at or below 20%, and refreshes once a minute. Click to refresh immediately; hover for the device name and status.
+A small mouse icon in the Omarchy bar. Hover for battery percentage and charging status. The icon highlights battery levels at or below 20%. Readings refresh once a minute, or immediately when clicked.
 
 Requires Omarchy's Quickshell plugin system. This does not support older Waybar-based Omarchy installations.
 
@@ -19,19 +19,19 @@ Use `linux-lts-headers` or `linux-zen-headers` instead if you run that kernel. O
 omarchy plugin add https://github.com/AksharP5/omarchy-razer-battery.git --enable --yes
 ```
 
-The widget appears on the right. To place it next to the power widget:
+The widget appears on the right by default. To place it immediately left of Radio Atlas, if installed:
 
 ```sh
-omarchy bar move akshar.razer-battery --before omarchy.power
+omarchy bar move akshar.razer-battery --before akshar.radio-atlas
 ```
 
 ## Behavior
 
-- `Mouse 56%` with a charging icon when plugged in.
+- A mouse icon with battery percentage and charging status available on hover.
 - Low battery uses the current theme's urgent color.
-- `Mouse ?` means there is no responding mouse or a read failed. Hover for details.
+- A dimmed icon means there is no responding mouse or a read failed. Hover for details.
 - One reader serves every monitor. Each query has a ten-second timeout.
-- Multiple mice appear in the tooltip; the bar shows the lowest battery percentage.
+- Multiple mice appear in the tooltip; the icon highlights when any mouse has low battery and is not charging.
 - A receiver with an empty serial response is ignored, avoiding a false 0% when its mouse is off or connected by cable. Two connections reporting the same serial count as one mouse.
 
 Tested with the DeathAdder V3 Pro, USB IDs `1532:00b6` and `1532:00b7`. Other OpenRazer mice exposing the same battery attributes may work, but have not been tested.

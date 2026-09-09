@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "akshar.razer-battery",
   "name": "Razer Battery",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Akshar Patel",
   "license": "MIT",
-  "description": "Razer mouse battery percentage and charging status in the Omarchy bar.",
+  "description": "A minimal mouse icon with Razer battery percentage and charging status on hover.",
   "homepage": "https://github.com/AksharP5/omarchy-razer-battery",
   "repository": "https://github.com/AksharP5/omarchy-razer-battery",
   "keywords": ["razer", "mouse", "battery"],
@@ -16,7 +16,7 @@
   },
   "barWidget": {
     "displayName": "Razer Battery",
-    "description": "Mouse battery percentage, charging status, and low battery indicator.",
+    "description": "Mouse icon with battery details on hover and a low battery indicator.",
     "category": "Hardware",
     "allowMultiple": false,
     "defaultSection": "right"

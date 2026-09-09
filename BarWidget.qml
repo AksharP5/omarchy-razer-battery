@@ -7,13 +7,9 @@ BarWidget {
 
   readonly property var service: bar?.shell?.serviceFor(moduleName) ?? null
   readonly property var devices: service ? service.devices : []
-  readonly property var battery: {
-    if (devices.length === 0) return null
-    return devices.reduce(function(lowest, device) {
-      return device.percentage < lowest.percentage ? device : lowest
-    })
-  }
-  readonly property bool low: battery !== null && !battery.charging && battery.percentage <= 20
+  readonly property bool low: devices.some(function(device) {
+    return !device.charging && device.percentage <= 20
+  })
   readonly property string detail: {
     if (!service || !service.ready) return "Reading mouse battery..."
     var lines = devices.map(function(device) {
@@ -29,15 +25,13 @@ BarWidget {
   implicitWidth: button.implicitWidth
   implicitHeight: button.implicitHeight
 
-  WidgetButton {
+  BarIconButton {
     id: button
     anchors.fill: parent
     bar: root.bar
-    text: (root.vertical ? "Mouse\n" : "Mouse ")
-      + (root.battery ? root.battery.percentage + "%" : "?")
-      + (root.battery && root.battery.charging ? " \uf0e7" : "")
+    text: "\udb80\udf7d"
     active: root.low
-    dimmed: root.battery === null
+    dimmed: root.devices.length === 0
     tooltipText: root.detail
     onPressed: if (root.service) root.service.refresh()
   }
